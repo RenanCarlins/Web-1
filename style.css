@@ -1,0 +1,20 @@
+[data-bs-theme="dark"] {
+  --bs-body-bg: #181a1b;
+  --bs-body-color: #e1e3e5;
+  --bs-secondary-rgb: 165, 170, 175;
+  --bs-border-color: #555b60;
+  --bs-tertiary-bg: #292d31;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+@media (max-width: 575.98px) {
+  main.container-fluid {
+    padding-left: .75rem !important;
+    padding-right: .75rem !important;
+  }
+}
