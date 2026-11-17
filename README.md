@@ -41,3 +41,4 @@ O objetivo principal é aplicar na prática os conceitos fundamentais de desenvo
 
 ##Como executar o Projeto
  git clone [https://github.com/RenanCarlins/web-1.git](https://github.com/RenanCarlins/web-1.git)
+ Pages [https://renancarlins.github.io/Web-1/](https://renancarlins.github.io/Web-1/)
