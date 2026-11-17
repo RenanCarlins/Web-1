@@ -1,17 +1,38 @@
+/* Tema escuro: sobrescreve variáveis do Bootstrap */
 [data-bs-theme="dark"] {
-  --bs-body-bg: #181a1b;
-  --bs-body-color: #e1e3e5;
-  --bs-secondary-rgb: 165, 170, 175;
-  --bs-border-color: #555b60;
-  --bs-tertiary-bg: #292d31;
+  --bs-body-bg: #181a1b;            /* fundo da página */
+  --bs-body-color: #e1e3e5;         /* cor do texto */
+  --bs-secondary-rgb: 165, 170, 175; /* cinza "secundário" (mais claro) */
+  --bs-border-color: #555b60;       /* bordas */
+  --bs-tertiary-bg: #292d31;        /* fundo de cards, modais e menu (bg-body-tertiary) */
 }
 
+/* O cinza ficou claro no tema escuro: texto branco nos badges quase não lia */
+[data-bs-theme="dark"] .text-bg-secondary {
+  color: #111 !important;
+}
+
+/* Botão principal invertido no tema claro (btn-light some em fundo branco) */
+[data-bs-theme="dark"] .btn-light {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #212529;
+  --bs-btn-border-color: #212529;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #424649;
+  --bs-btn-hover-border-color: #373b3e;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #4d5154;
+  --bs-btn-active-border-color: #373b3e;
+}
+
+/* Tabelas: células alinhadas ao centro e sem quebra de linha (a rolagem horizontal vem do .table-responsive) */
 .table th,
 .table td {
   vertical-align: middle;
   white-space: nowrap;
 }
 
+/* Celular: margens laterais menores no conteúdo principal */
 @media (max-width: 575.98px) {
   main.container-fluid {
     padding-left: .75rem !important;
