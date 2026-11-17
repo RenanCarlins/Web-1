@@ -1,266 +1,700 @@
 <!doctype html>
 <html lang="pt-BR" data-bs-theme="dark">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#181a1b">
-  <meta name="description" content="Kbona -- Loja de Compras">
-  <title>Kbona</title>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Ajusta a página à largura do celular -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Cor da barra do navegador no celular -->
+    <meta name="theme-color" content="#181a1b" />
+    <meta name="description" content="Kbona -- Loja de Compras" />
+    <title>Kbona</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
-</head>
-<body>
-  <header class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary sticky-top">
-    <div class="container-fluid px-3 px-lg-4">
-      <button class="btn btn-outline-light d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-label="Abrir menu">
-        <span aria-hidden="true">☰</span>
-      </button>
-      <a class="navbar-brand fw-bold" href="#painel"> Kbona <span class="badge text-bg-secondary"> Loja</span></a>
+    <!-- Bootstrap (CSS pronto: grade, botões, cards, modais) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Nosso CSS, carregado depois para sobrescrever o Bootstrap -->
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- BARRA DO TOPO (fixa): botão ☰, marca, links e botão de tema -->
+    <header
+      class="navbar navbar-expand-lg bg-black border-bottom border-secondary sticky-top"
+      data-bs-theme="dark"
+    >
+      <div class="container-fluid px-3 px-lg-4">
+        <!-- Botão ☰ que abre o menu lateral (só aparece no celular) -->
+        <button
+          class="btn btn-outline-light d-lg-none me-2"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#mobileNav"
+          aria-controls="mobileNav"
+          aria-label="Abrir menu"
+        >
+          <span aria-hidden="true">☰</span>
+        </button>
+        <!-- Marca da loja; o clique volta ao painel -->
+        <a class="navbar-brand fw-bold" href="#painel"
+          >Kbona <span class="badge text-bg-secondary">Loja</span></a
+        >
 
-      <div class="d-none d-lg-flex align-items-center gap-2 ms-auto">
-        <nav class="nav nav-underline" aria-label="Navegação principal">
-          <a class="nav-link text-light" data-nav-link href="#painel">Loja</a>
-          <a class="nav-link text-light" data-nav-link href="#produtos">Biblioteca</a>
-          <a class="nav-link text-light" data-nav-link href="#clientes">Usuários</a>
-          <a class="nav-link text-light" data-nav-link href="#combo">Carrinho</a>
+        <div class="d-none d-lg-flex align-items-center gap-2 ms-auto">
+          <!-- Menu do desktop. data-nav-link marca os links usados para trocar de tela -->
+          <nav class="nav nav-underline" aria-label="Navegação principal">
+            <a class="nav-link text-light" data-nav-link href="#painel">Loja</a>
+            <a class="nav-link text-light" data-nav-link href="#produtos"
+              >Biblioteca</a
+            >
+            <a class="nav-link text-light" data-nav-link href="#clientes"
+              >Usuários</a
+            >
+            <a class="nav-link text-light" data-nav-link href="#combo"
+              >Carrinho</a
+            >
+            <a class="nav-link text-light" data-nav-link href="#vendas"
+              >Vendas</a
+            >
+          </nav>
+          <!-- Alterna tema claro/escuro (desktop) -->
+          <button
+            id="tema"
+            class="btn btn-sm btn-outline-light ms-2"
+            type="button"
+            aria-label="Alternar tema"
+            title="Alternar tema"
+          >
+            ☼ Tema
+          </button>
+        </div>
+        <!-- Alterna tema claro/escuro (celular) -->
+        <button
+          id="tema-mobile"
+          class="btn btn-sm btn-outline-light d-lg-none ms-auto"
+          type="button"
+          aria-label="Alternar tema"
+        >
+          ☼
+        </button>
+      </div>
+    </header>
+
+    <!-- MENU LATERAL do celular (gaveta que desliza da esquerda) -->
+    <div
+      class="offcanvas offcanvas-start bg-body-tertiary"
+      tabindex="-1"
+      id="mobileNav"
+      aria-labelledby="mobileNavLabel"
+    >
+      <div class="offcanvas-header border-bottom border-secondary">
+        <h2 class="offcanvas-title h5" id="mobileNavLabel">
+          Kbona <span class="badge text-bg-secondary">MENU</span>
+        </h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Fechar"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <p class="small text-secondary">
+          Escolha sua própria aventura administrativa:
+        </p>
+        <!-- Mesmos links do menu do desktop -->
+        <nav
+          class="nav nav-underline flex-column gap-2"
+          aria-label="Navegação móvel"
+        >
+          <a class="nav-link" data-nav-link href="#painel">▦ Loja / Painel</a>
+          <a class="nav-link" data-nav-link href="#produtos"
+            >▣ Biblioteca / Produtos</a
+          >
+          <a class="nav-link" data-nav-link href="#clientes"
+            >♙ Usuários / Clientes</a
+          >
+          <a class="nav-link" data-nav-link href="#combo"
+            >＋ Carrinho / Combo</a
+          >
+          <a class="nav-link" data-nav-link href="#vendas"
+            >☰ Vendas / Pedidos</a
+          >
+          <hr />
+          <!-- Alterna tema de dentro do menu lateral -->
+          <button
+            id="tema-mobile-menu"
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            Alternar tema
+          </button>
         </nav>
-        <button id="tema" class="btn btn-sm btn-outline-light ms-2" type="button" aria-label="Alternar tema" title="Alternar tema">☼ Tema</button>
+        <p class="small text-secondary mt-4">
+          Conexão: você está conectado. Que tecnologia.
+        </p>
       </div>
-      <button id="tema-mobile" class="btn btn-sm btn-outline-light d-lg-none ms-auto" type="button" aria-label="Alternar tema">☼</button>
     </div>
-  </header>
 
-  <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavLabel">
-    <div class="offcanvas-header border-bottom border-secondary">
-      <h2 class="offcanvas-title h5" id="mobileNavLabel">GRIDSTORE <span class="badge text-bg-secondary">MENU</span></h2>
-      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
-    </div>
-    <div class="offcanvas-body">
-      <p class="small text-secondary">Escolha sua própria aventura administrativa:</p>
-      <nav class="nav nav-underline flex-column gap-2" aria-label="Navegação móvel">
-        <a class="nav-link text-light" data-nav-link href="#painel">▦ Loja / Painel</a>
-        <a class="nav-link text-light" data-nav-link href="#produtos">▣ Biblioteca / Produtos</a>
-        <a class="nav-link text-light" data-nav-link href="#clientes">♙ Usuários / Clientes</a>
-        <a class="nav-link text-light" data-nav-link href="#combo">＋ Carrinho / Combo</a>
-        <hr>
-        <button id="tema-mobile-menu" class="btn btn-outline-light" type="button">Alternar tema</button>
-      </nav>
-      <p class="small text-secondary mt-4">Conexão: você está conectado. Que tecnologia.</p>
-    </div>
-  </div>
-  
-  <section id="painel" class="page-section">
-      <div class="card text-bg-dark border-secondary mb-4">
-        <div class="card-body p-4">
-          <span class="badge text-bg-primary mb-2">Visão Geral</span>
-          <h1 class="display-6 fw-bold">Central de Comando Kbona</h1>
-          <p class="lead mb-0">Acompanhe as métricas.</p>
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="h4 mb-0">📊 Desempenho</h2>
-        <span class="badge text-bg-secondary">Atualizado</span>
-      </div>
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 mb-4">
-        
-        <div class="col">
-          <div class="card text-bg-dark border-secondary h-100">
-            <div class="card-body d-flex flex-column justify-content-center">
-              <h6 class="card-title text-secondary text-uppercase mb-1">Total</h6>
-              <h3 class="card-text mb-0" id="ind-faturacao">R$ 0,00</h3>
-            </div>
+    <!-- CONTEÚDO: cada <section> é uma "tela"; só uma fica visível por vez (as outras têm hidden) -->
+    <main class="container-fluid px-3 px-lg-4 py-4">
+      <!-- TELA 1 · PAINEL: resumo da loja -->
+      <section id="painel" class="page-section">
+        <div class="card bg-body-tertiary border-secondary mb-4">
+          <div class="card-body p-4">
+            <span class="badge text-bg-primary mb-2">Visão Geral</span>
+            <h1 class="display-6 fw-bold">Central de Comando Kbona</h1>
+            <p class="lead mb-0">Acompanhe as métricas.</p>
           </div>
         </div>
 
-        <div class="col">
-          <div class="card text-bg-dark border-secondary h-100">
-            <div class="card-body d-flex flex-column justify-content-center">
-              <h6 class="card-title text-secondary text-uppercase mb-1">Clientes</h6>
-              <h3 class="card-text mb-0" id="ind-clientes">0</h3>
-            </div>
-          </div>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="h4 mb-0">📊 Desempenho</h2>
+          <span class="badge text-bg-secondary">Atualizado</span>
         </div>
 
-        <div class="col">
-          <div class="card text-bg-dark border-secondary h-100">
-            <div class="card-body d-flex flex-column justify-content-center">
-              <h6 class="card-title text-secondary text-uppercase mb-1">Peças</h6>
-              <h3 class="card-text mb-0" id="ind-estoque">0</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card text-bg-dark border-secondary h-100">
-            <div class="card-body d-flex flex-column justify-content-center">
-              <h6 class="card-title text-secondary text-uppercase mb-1">Vendas</h6>
-              <h3 class="card-text mb-0 text-success" id="ind-vendas">0</h3>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section id="produtos" class="page-section" hidden>
-      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
-        <div>
-          <span class="badge text-bg-secondary mb-2">Alternativas</span>
-          <h1 class="h2 mb-1">Produtos</h1>
-          <p class="text-body-secondary mb-0">Aprimore-se.</p>
-        </div>
-        <button class="btn btn-light text-dark" id="Produto" type="button">＋ Adicionar</button>
-      </div>
-
-      <div class="card border-secondary mb-3">
-        <div class="card-body">
-          <div class="row g-2">
-            <div class="col-12 col-md-4"><label class="visually-hidden" for="pq">Buscar produto</label><input id="pq" type="search" class="form-control" placeholder="Pesquisar" aria-label="Buscar produto"></div>
-            <div class="col-6 col-md-3"><label class="visually-hidden" for="pc">Categoria</label><select id="pc" class="form-select" aria-label="Categoria"></select></div>
-            <div class="col-6 col-md-2"><label class="visually-hidden" for="pe">Estoque</label><select id="pe" class="form-select" aria-label="Estoque"><option value="">Todo estoque</option><option value="ok">Disponível</option><option value="baixo">Quase acabando</option><option value="esgotado">Esgotado (F)</option></select></div>
-            <div class="col-12 col-md-3"><label class="visually-hidden" for="po">Ordenar</label><select id="po" class="form-select" aria-label="Ordenar"><option value="n">Ordenar por nome</option><option value="pa">Menor preço</option><option value="pd">Maior preço</option><option value="e">Menor estoque</option></select></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card border-secondary">
-        <div class="card-header bg-secondary text-dark fw-bold">Inventário</div>
-        <div class="card-body">
-          <div id="tp" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4 g-3"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="clientes" class="page-section" hidden>
-      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
-        <div>
-          <span class="badge text-bg-secondary mb-2">COMUNIDADE</span>
-          <h1 class="h2 mb-1">Clientes</h1>
-        </div>
-        <button class="btn btn-light text-dark" id="novoCli" type="button">＋ Usuário</button>
-      </div>
-      <div class="card border-secondary mb-3"><div class="card-body"><label class="visually-hidden" for="lq">Buscar cliente</label><input id="lq" type="search" class="form-control" placeholder="Buscar usuário por nome ou CPF..."></div></div>
-      <div class="card border-secondary">
-        <div class="card-header bg-secondary text-dark fw-bold">Lista de Clientes</div>
-        <div class="table-responsive">
-          <table class="table table-dark table-hover table-striped align-middle mb-0">
-            <thead><tr><th scope="col">Nome</th><th scope="col">CPF</th><th scope="col">E-mail</th><th scope="col">Telefone</th><th scope="col">Compras</th></tr></thead>
-            <tbody id="tcli"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section id="combo" class="page-section" hidden>
-      <div class="mb-3">
-        <span class="badge text-bg-secondary mb-2">CARRINHO DE COMPRAS</span>
-        <h1 class="h2 mb-1">Montar combo</h1>
-        <p class="text-body-secondary mb-0">Monte seu setup<strong>Desconto!</strong></p>
-      </div>
-      <div class="row g-3">
-        <div class="col-12 col-xl-7">
-          <div class="card border-secondary h-100">
-            <div class="card-header bg-secondary text-dark fw-bold">🛒 Seu carrinho</div>
-            <div class="card-body">
-              <label class="form-label" for="cc">Cliente / pessoa</label>
-              <select id="cc" class="form-select mb-3" aria-label="Cliente"></select>
-              <label class="form-label" for="cp">Produto / item</label>
-              <div class="row g-2 mb-3">
-                <div class="col-7 col-sm-8"><select id="cp" class="form-select" aria-label="Produto"></select></div>
-                <div class="col-5 col-sm-4"><div class="input-group"><input id="cq" type="number" min="1" step="1" value="1" class="form-control" aria-label="Quantidade"><button id="add" class="btn btn-secondary" type="button">Adicionar</button></div></div>
+        <!-- Indicadores (ids ind-*): total faturado, clientes, peças em estoque e vendas -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 mb-4">
+          <div class="col">
+            <div class="card bg-body-tertiary border-secondary h-100">
+              <div class="card-body d-flex flex-column justify-content-center">
+                <h6 class="card-title text-secondary text-uppercase mb-1">
+                  Total
+                </h6>
+                <h3 class="card-text mb-0" id="ind-faturacao">R$ 0,00</h3>
               </div>
-              <div class="table-responsive">
-                <table class="table table-dark table-hover align-middle mb-0"><thead><tr><th scope="col">Item</th><th scope="col">Quantidade.</th><th scope="col">Sub-total</th></tr></thead></table>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-body-tertiary border-secondary h-100">
+              <div class="card-body d-flex flex-column justify-content-center">
+                <h6 class="card-title text-secondary text-uppercase mb-1">
+                  Clientes
+                </h6>
+                <h3 class="card-text mb-0" id="ind-clientes">0</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-body-tertiary border-secondary h-100">
+              <div class="card-body d-flex flex-column justify-content-center">
+                <h6 class="card-title text-secondary text-uppercase mb-1">
+                  Peças
+                </h6>
+                <h3 class="card-text mb-0" id="ind-estoque">0</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-body-tertiary border-secondary h-100">
+              <div class="card-body d-flex flex-column justify-content-center">
+                <h6 class="card-title text-secondary text-uppercase mb-1">
+                  Vendas
+                </h6>
+                <h3 class="card-text mb-0 text-success" id="ind-vendas">0</h3>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-xl-5">
-          <div class="card border-secondary h-100">
-            <div class="card-header bg-secondary text-dark fw-bold">Resumo da compra</div>
-            <div class="card-body">
-              <dl id="res" class="row mb-3"></dl>
-              <label class="form-label" for="par">Parcelas</label>
-              <select id="par" class="form-select mb-2"></select>
-              <div id="parinfo" class="small text-body-secondary mb-3"></div>
-              <button id="fin" class="btn btn-light text-dark btn-lg w-100" type="button">Finalizar compra e aceitar o destino</button>
+      </section>
+
+      <!-- TELA 2 · PRODUTOS: cadastro e inventário -->
+      <section id="produtos" class="page-section" hidden>
+        <div
+          class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3"
+        >
+          <div>
+            <span class="badge text-bg-secondary mb-2">Alternativas</span>
+            <h1 class="h2 mb-1">Produtos</h1>
+            <p class="text-body-secondary mb-0">Aprimore-se.</p>
+          </div>
+          <!-- Abre o modal de cadastro de produto -->
+          <button class="btn btn-light" id="Produto" type="button">
+            ＋ Adicionar
+          </button>
+        </div>
+
+        <div class="card border-secondary mb-3">
+          <div class="card-body">
+            <!-- Filtros: busca (pq), categoria (pc), estoque (pe) e ordenação (po) -->
+            <div class="row g-2">
+              <div class="col-12 col-md-4">
+                <label class="visually-hidden" for="pq">Buscar produto</label
+                ><input
+                  id="pq"
+                  type="search"
+                  class="form-control"
+                  placeholder="Pesquisar"
+                  aria-label="Buscar produto"
+                />
+              </div>
+              <div class="col-6 col-md-3">
+                <label class="visually-hidden" for="pc">Categoria</label
+                ><select
+                  id="pc"
+                  class="form-select"
+                  aria-label="Categoria"
+                ></select>
+              </div>
+              <div class="col-6 col-md-2">
+                <label class="visually-hidden" for="pe">Estoque</label
+                ><select id="pe" class="form-select" aria-label="Estoque">
+                  <option value="">Todo estoque</option>
+                  <option value="ok">Disponível</option>
+                  <option value="baixo">Quase acabando</option>
+                  <option value="esgotado">Esgotado (F)</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-3">
+                <label class="visually-hidden" for="po">Ordenar</label
+                ><select id="po" class="form-select" aria-label="Ordenar">
+                  <option value="n">Ordenar por nome</option>
+                  <option value="pa">Menor preço</option>
+                  <option value="pd">Maior preço</option>
+                  <option value="e">Menor estoque</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section id="vendas" class="page-section" hidden>
-      <div class="mb-3">
-        <span class="badge text-bg-secondary mb-2">HISTÓRICO</span>
-        <h1 class="h2 mb-1">Vendas</h1>
-        <p class="text-body-secondary mb-0">Acompanhe os pedidos. Não existe botão de reembolso.</p>
-      </div>
-      <div class="card border-secondary">
-        <div class="card-header bg-secondary text-dark fw-bold">Seus pedidos</div>
-        <div class="px-3 pt-2 overflow-x-auto"><ul class="nav nav-tabs flex-nowrap" id="abas" aria-label="Filtrar vendas por status"></ul></div>
-        <div class="table-responsive">
-          <table class="table table-dark table-hover table-striped align-middle mb-0">
-            <thead><tr><th scope="col">Venda</th><th scope="col">Cliente</th><th scope="col">Itens</th><th scope="col">Total</th></tr></thead>
-            <tbody id="tv"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <footer class="border-top border-secondary mt-5 pt-3 pb-2 small text-body-secondary d-flex flex-column flex-md-row justify-content-between gap-2">
-      <span><strong class="text-body">Kbona</strong> · Uma loja. Muitos bugs.</span>
-    </footer>
-  </main>
-
-  <div class="modal fade" id="mProd" tabindex="-1" aria-labelledby="mProdT" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <form class="modal-content text-bg-dark" id="fProd" novalidate>
-        <div class="modal-header border-secondary"><h2 class="modal-title h5" id="mProdT">Produto</h2><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button></div>
-        <div class="modal-body vstack gap-3">
-          <input type="hidden" name="pid">
-          <div><label class="form-label" for="pn">Nome</label><input id="pn" name="nome" class="form-control" required minlength="3"><div class="invalid-feedback">Informe o nome</div></div>
-          <div><label class="form-label" for="pcat">Categoria</label><select id="pcat" name="cat" class="form-select" required></select></div>
-          <div class="row g-3">
-            <div class="col-12 col-sm-6"><label class="form-label" for="ppr">Preço (R$)</label><input id="ppr" name="preco" type="number" min="0.01" step="0.01" class="form-control" required><div class="invalid-feedback">Informe um preço maior que zero.</div></div>
-            <div class="col-12 col-sm-6"><label class="form-label" for="pes">Estoque</label><input id="pes" name="estoque" type="number" min="0" step="1" class="form-control" required><div class="invalid-feedback">Informe um número inteiro, zero ou mais.</div></div>
+        <div class="card border-secondary">
+          <div class="card-header bg-secondary text-dark fw-bold">
+            Inventário
           </div>
-          <div><label class="form-label" for="pimg">Imagem do produto (URL)</label><input id="pimg" name="imagem" type="url" class="form-control" placeholder="https://... (opcional)"><div class="form-text">Cole o endereço de uma imagem pública. Se deixar vazio, o produto aparecerá sem foto.</div></div>
+          <div class="card-body">
+            <!-- Cards dos produtos (desenhados pelo JS) -->
+            <div
+              id="tp"
+              class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4 g-3"
+            ></div>
+          </div>
         </div>
-        <div class="modal-footer border-secondary"><button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Desistir</button><button class="btn btn-light text-dark">Salvar item</button></div>
-      </form>
-    </div>
-  </div>
+      </section>
 
-  <div class="modal fade" id="mCli" tabindex="-1" aria-labelledby="mCliT" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <form class="modal-content text-bg-dark" id="fCli" novalidate>
-        <div class="modal-header border-secondary"><h2 class="modal-title h5" id="mCliT">Cliente</h2><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button></div>
-        <div class="modal-body vstack gap-3">
-          <input type="hidden" name="cid">
-          <div><label class="form-label" for="cn">Nome completo</label><input id="cn" name="nome" class="form-control" required minlength="3"><div class="invalid-feedback">Informe</div></div>
-          <div><label class="form-label" for="cpf">CPF</label><input id="cpf" name="cpf" class="form-control" required pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" placeholder="000.000.000-00"><div class="invalid-feedback" id="cpfmsg"></div></div>
-          <div><label class="form-label" for="cem">E-mail</label><input id="cem" name="email" type="email" class="form-control" required><div class="invalid-feedback">Informe um e-mail válido.</div></div>
-          <div><label class="form-label" for="ctl">Telefone</label><input id="ctl" name="tele" class="form-control" required pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}" placeholder="(47)"><div class="invalid-feedback">Informe DDD e o numero, como (47).</div></div>
+      <!-- TELA 3 · CLIENTES: cadastro e lista -->
+      <section id="clientes" class="page-section" hidden>
+        <div
+          class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3"
+        >
+          <div>
+            <span class="badge text-bg-secondary mb-2">COMUNIDADE</span>
+            <h1 class="h2 mb-1">Clientes</h1>
+          </div>
+          <!-- Abre o modal de cadastro de cliente -->
+          <button class="btn btn-light" id="novoCli" type="button">
+            ＋ Usuário
+          </button>
         </div>
-        <div class="modal-footer border-secondary"><button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancelar</button><button class="btn btn-light text-dark">Salvar usuário</button></div>
-      </form>
+        <!-- Busca de cliente por nome ou CPF -->
+        <div class="card border-secondary mb-3">
+          <div class="card-body">
+            <label class="visually-hidden" for="lq">Buscar cliente</label
+            ><input
+              id="lq"
+              type="search"
+              class="form-control"
+              placeholder="Buscar usuário por nome ou CPF..."
+            />
+          </div>
+        </div>
+        <div class="card border-secondary">
+          <div class="card-header bg-secondary text-dark fw-bold">
+            Lista de Clientes
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">CPF</th>
+                  <th scope="col">E-mail</th>
+                  <th scope="col">Telefone</th>
+                  <th scope="col">Compras</th>
+                </tr>
+              </thead>
+              <!-- Linhas da tabela de clientes (JS) -->
+              <tbody id="tcli"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TELA 4 · CARRINHO: montar o combo e finalizar a compra -->
+      <section id="combo" class="page-section" hidden>
+        <div class="mb-3">
+          <span class="badge text-bg-secondary mb-2">CARRINHO DE COMPRAS</span>
+          <h1 class="h2 mb-1">Montar combo</h1>
+          <p class="text-body-secondary mb-0">
+            Monte seu setup e ganhe <strong>desconto!</strong>
+          </p>
+        </div>
+        <div class="row g-3">
+          <div class="col-12 col-xl-7">
+            <div class="card border-secondary h-100">
+              <div class="card-header bg-secondary text-dark fw-bold">
+                🛒 Seu carrinho
+              </div>
+              <div class="card-body">
+                <label class="form-label" for="cc">Cliente / pessoa</label>
+                <!-- Cliente que está comprando -->
+                <select
+                  id="cc"
+                  class="form-select mb-3"
+                  aria-label="Cliente"
+                ></select>
+                <label class="form-label" for="cp">Produto / item</label>
+                <!-- Produto (cp), quantidade (cq) e botão Adicionar (add) -->
+                <div class="row g-2 mb-3">
+                  <div class="col-7 col-sm-8">
+                    <select
+                      id="cp"
+                      class="form-select"
+                      aria-label="Produto"
+                    ></select>
+                  </div>
+                  <div class="col-5 col-sm-4">
+                    <div class="input-group">
+                      <input
+                        id="cq"
+                        type="number"
+                        min="1"
+                        step="1"
+                        value="1"
+                        class="form-control"
+                        aria-label="Quantidade"
+                      /><button
+                        id="add"
+                        class="btn btn-secondary"
+                        type="button"
+                      >
+                        Adicionar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Qtd.</th>
+                        <th scope="col">Subtotal</th>
+                      </tr>
+                    </thead>
+                    <!-- Itens do carrinho (id novo: o JS precisa escrever aqui) -->
+                    <tbody id="tc"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-5">
+            <div class="card border-secondary h-100">
+              <div class="card-header bg-secondary text-dark fw-bold">
+                Resumo da compra
+              </div>
+              <div class="card-body">
+                <!-- Resumo da compra (valores calculados pelo JS) -->
+                <dl id="res" class="row mb-3"></dl>
+                <!-- Parcelas (par) e texto explicativo (parinfo) -->
+                <label class="form-label" for="par">Parcelas</label>
+                <select id="par" class="form-select mb-2"></select>
+                <div id="parinfo" class="small text-body-secondary mb-3"></div>
+                <!-- Finaliza a compra e registra a venda -->
+                <button
+                  id="fin"
+                  class="btn btn-light btn-lg w-100"
+                  type="button"
+                >
+                  Finalizar compra e aceitar o destino
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TELA 5 · VENDAS: histórico de pedidos -->
+      <section id="vendas" class="page-section" hidden>
+        <div class="mb-3">
+          <span class="badge text-bg-secondary mb-2">HISTÓRICO</span>
+          <h1 class="h2 mb-1">Vendas</h1>
+          <p class="text-body-secondary mb-0">
+            Acompanhe os pedidos. Não existe botão de reembolso.
+          </p>
+        </div>
+        <div class="card border-secondary">
+          <div class="card-header bg-secondary text-dark fw-bold">
+            Seus pedidos
+          </div>
+          <!-- Abas de filtro por status (geradas pelo JS) -->
+          <div class="px-3 pt-2 overflow-x-auto">
+            <ul
+              class="nav nav-tabs flex-nowrap"
+              id="abas"
+              aria-label="Filtrar vendas por status"
+            ></ul>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Venda</th>
+                  <th scope="col">Cliente</th>
+                  <th scope="col">Itens</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <!-- Linhas da tabela de vendas (JS) -->
+              <tbody id="tv"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- RODAPÉ -->
+      <footer
+        class="border-top border-secondary mt-5 pt-3 pb-2 small text-body-secondary d-flex flex-column flex-md-row justify-content-between gap-2"
+      >
+        <span
+          ><strong class="text-body">Kbona</strong> · Uma loja. Muitos
+          bugs.</span
+        >
+      </footer>
+    </main>
+
+    <!-- MODAL DE PRODUTO (criar/editar); required, min e step validam os campos -->
+    <div
+      class="modal fade"
+      id="mProd"
+      tabindex="-1"
+      aria-labelledby="mProdT"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content bg-body-tertiary" id="fProd" novalidate>
+          <div class="modal-header border-secondary">
+            <h2 class="modal-title h5" id="mProdT">Produto</h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </div>
+          <div class="modal-body vstack gap-3">
+            <!-- Id oculto do produto (usado ao editar) -->
+            <input type="hidden" name="pid" />
+            <div>
+              <label class="form-label" for="pn">Nome</label
+              ><input
+                id="pn"
+                name="nome"
+                class="form-control"
+                required
+                minlength="3"
+              />
+              <div class="invalid-feedback">
+                Informe o nome (mínimo 3 letras).
+              </div>
+            </div>
+            <div>
+              <label class="form-label" for="pcat">Categoria</label
+              ><select
+                id="pcat"
+                name="cat"
+                class="form-select"
+                required
+              ></select>
+            </div>
+            <div class="row g-3">
+              <div class="col-12 col-sm-6">
+                <label class="form-label" for="ppr">Preço (R$)</label
+                ><input
+                  id="ppr"
+                  name="preco"
+                  type="number"
+                  min="0.01"
+                  step="0.01"
+                  class="form-control"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Informe um preço maior que zero.
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="form-label" for="pes">Estoque</label
+                ><input
+                  id="pes"
+                  name="estoque"
+                  type="number"
+                  min="0"
+                  step="1"
+                  class="form-control"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Informe um número inteiro, zero ou mais.
+                </div>
+              </div>
+            </div>
+            <div>
+              <label class="form-label" for="pimg"
+                >Imagem do produto (URL)</label
+              ><input
+                id="pimg"
+                name="imagem"
+                type="url"
+                class="form-control"
+                placeholder="https://... (opcional)"
+              />
+              <div class="form-text">
+                Cole o endereço de uma imagem pública. Se deixar vazio, o
+                produto aparecerá sem foto.
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-secondary">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Desistir</button
+            ><button type="submit" class="btn btn-light">Salvar item</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <div class="modal fade" id="mDel" tabindex="-1" aria-labelledby="delTitle" aria-hidden="true">
-    <div class="modal-dialog modal-sm modal-dialog-centered"><div class="modal-content text-bg-dark border-secondary">
-      <div class="modal-body"><h2 class="h6" id="delTitle">Tem certeza, chefe?</h2><p class="mb-0">Excluir <strong id="delNome"></strong>? Não tem mais volta</p></div>
-      <div class="modal-footer border-secondary"><button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Voltar</button><button id="delOk" type="button" class="btn btn-danger">Excluir</button></div>
-    </div></div>
-  </div>
+    <!-- MODAL DE CLIENTE; pattern valida CPF e telefone -->
+    <div
+      class="modal fade"
+      id="mCli"
+      tabindex="-1"
+      aria-labelledby="mCliT"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content bg-body-tertiary" id="fCli" novalidate>
+          <div class="modal-header border-secondary">
+            <h2 class="modal-title h5" id="mCliT">Cliente</h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </div>
+          <div class="modal-body vstack gap-3">
+            <!-- Id oculto do cliente (usado ao editar) -->
+            <input type="hidden" name="cid" />
+            <div>
+              <label class="form-label" for="cn">Nome completo</label
+              ><input
+                id="cn"
+                name="nome"
+                class="form-control"
+                required
+                minlength="3"
+              />
+              <div class="invalid-feedback">Informe o nome completo.</div>
+            </div>
+            <div>
+              <label class="form-label" for="cpf">CPF</label
+              ><input
+                id="cpf"
+                name="cpf"
+                class="form-control"
+                required
+                pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"
+                placeholder="000.000.000-00"
+              />
+              <div class="invalid-feedback" id="cpfmsg"></div>
+            </div>
+            <div>
+              <label class="form-label" for="cem">E-mail</label
+              ><input
+                id="cem"
+                name="email"
+                type="email"
+                class="form-control"
+                required
+              />
+              <div class="invalid-feedback">Informe um e-mail válido.</div>
+            </div>
+            <div>
+              <label class="form-label" for="ctl">Telefone</label
+              ><input
+                id="ctl"
+                name="tele"
+                class="form-control"
+                required
+                pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}"
+                placeholder="(47) 99999-9999"
+              />
+              <div class="invalid-feedback">
+                Informe DDD e o número, como (47) 99999-9999.
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-secondary">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar</button
+            ><button type="submit" class="btn btn-light">Salvar usuário</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-  <div id="toasts" class="toast-container position-fixed bottom-0 end-0 p-3" aria-live="polite" aria-atomic="true"></div>
+    <!-- MODAL DE EXCLUSÃO: nome do item em #delNome, botão confirmar #delOk -->
+    <div
+      class="modal fade"
+      id="mDel"
+      tabindex="-1"
+      aria-labelledby="delTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content bg-body-tertiary border-secondary">
+          <div class="modal-body">
+            <h2 class="h6" id="delTitle">Tem certeza, chefe?</h2>
+            <p class="mb-0">
+              Excluir <strong id="delNome"></strong>? Não tem mais volta.
+            </p>
+          </div>
+          <div class="modal-footer border-secondary">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Voltar</button
+            ><button id="delOk" type="button" class="btn btn-danger">
+              Excluir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Área das notificações (toasts), canto inferior direito -->
+    <div
+      id="toasts"
+      class="toast-container position-fixed bottom-0 end-0 p-3"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <!-- Bootstrap JS (modais, menu lateral, toasts); vem antes do app.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Nosso JS: dados, telas, tema e cálculos -->
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
