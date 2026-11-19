@@ -2,9 +2,7 @@
 <html lang="pt-BR" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <!-- Ajusta a página à largura do celular -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Cor da barra do navegador no celular -->
   <meta name="theme-color" content="#181a1b">
   <meta name="description" content="Kbona -- Loja de Compras">
   <title>Kbona · Clientes</title>
@@ -13,18 +11,14 @@
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
-  <!-- BARRA DO TOPO (fixa): botão ☰, marca, links e botão de tema -->
   <header class="navbar navbar-expand-lg bg-black border-bottom border-secondary sticky-top" data-bs-theme="dark">
     <div class="container-fluid px-3 px-lg-4">
-      <!-- Botão ☰ que abre o menu lateral (só aparece no celular) -->
       <button class="btn btn-outline-light d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-label="Abrir menu">
         <span aria-hidden="true">☰</span>
       </button>
-      <!-- Marca da loja; o clique volta ao painel -->
       <a class="navbar-brand fw-bold" href="index.html">Kbona <span class="badge text-bg-secondary">Loja</span></a>
 
       <div class="d-none d-lg-flex align-items-center gap-2 ms-auto">
-        <!-- Menu do desktop; o link da página atual recebe a classe active -->
         <nav class="nav nav-underline" aria-label="Navegação principal">
           <a class="nav-link text-light" data-nav-link href="index.html">Loja</a>
           <a class="nav-link text-light" data-nav-link href="produtos.html">Biblioteca</a>
@@ -32,15 +26,12 @@
           <a class="nav-link text-light" data-nav-link href="carrinho.html">Carrinho</a>
           <a class="nav-link text-light" data-nav-link href="vendas.html">Vendas</a>
         </nav>
-        <!-- Alterna tema claro/escuro (desktop) -->
         <button id="tema" class="btn btn-sm btn-outline-light ms-2" type="button" aria-label="Alternar tema" title="Alternar tema">☼ Tema</button>
       </div>
-      <!-- Alterna tema claro/escuro (celular) -->
       <button id="tema-mobile" class="btn btn-sm btn-outline-light d-lg-none ms-auto" type="button" aria-label="Alternar tema">☼</button>
     </div>
   </header>
 
-  <!-- MENU LATERAL do celular (gaveta que desliza da esquerda) -->
   <div class="offcanvas offcanvas-start bg-body-tertiary" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavLabel">
     <div class="offcanvas-header border-bottom border-secondary">
       <h2 class="offcanvas-title h5" id="mobileNavLabel">Kbona <span class="badge text-bg-secondary">MENU</span></h2>
@@ -48,7 +39,6 @@
     </div>
     <div class="offcanvas-body">
       <p class="small text-secondary">Escolha sua própria aventura administrativa:</p>
-      <!-- Mesmos links do menu do desktop -->
       <nav class="nav nav-underline flex-column gap-2" aria-label="Navegação móvel">
         <a class="nav-link" data-nav-link href="index.html">▦ Loja / Painel</a>
         <a class="nav-link" data-nav-link href="produtos.html">▣ Biblioteca / Produtos</a>
@@ -56,52 +46,43 @@
         <a class="nav-link" data-nav-link href="carrinho.html">＋ Carrinho / Combo</a>
         <a class="nav-link" data-nav-link href="vendas.html">☰ Vendas / Pedidos</a>
         <hr>
-        <!-- Alterna tema de dentro do menu lateral -->
         <button id="tema-mobile-menu" class="btn btn-outline-secondary" type="button">Alternar tema</button>
       </nav>
       <p class="small text-secondary mt-4">Conexão: você está conectado. Que tecnologia.</p>
     </div>
   </div>
 
-  <!-- CONTEÚDO: tela "clientes" (cada tela agora é um arquivo .html; cabeçalho, menu e rodapé se repetem) -->
   <main class="container-fluid px-3 px-lg-4 py-4">
-    <!-- TELA 3 · CLIENTES: cadastro e lista -->
     <section id="clientes" class="page-section">
       <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
         <div>
           <span class="badge text-bg-secondary mb-2">COMUNIDADE</span>
           <h1 class="h2 mb-1">Clientes</h1>
         </div>
-        <!-- Abre o modal de cadastro de cliente -->
         <button class="btn btn-light" id="novoCli" type="button">＋ Usuário</button>
       </div>
-      <!-- Busca de cliente por nome ou CPF -->
       <div class="card border-secondary mb-3"><div class="card-body"><label class="visually-hidden" for="lq">Buscar cliente</label><input id="lq" type="search" class="form-control" placeholder="Buscar usuário por nome ou CPF..."></div></div>
       <div class="card border-secondary">
         <div class="card-header bg-secondary text-dark fw-bold">Lista de Clientes</div>
         <div class="table-responsive">
           <table class="table table-hover table-striped align-middle mb-0">
-            <thead><tr><th scope="col">Nome</th><th scope="col">CPF</th><th scope="col">E-mail</th><th scope="col">Telefone</th><th scope="col">Compras</th></tr></thead>
-            <!-- Linhas da tabela de clientes (JS) -->
+            <thead><tr><th scope="col">Nome</th><th scope="col">CPF</th><th scope="col">E-mail</th><th scope="col">Telefone</th><th scope="col">Compras</th><th scope="col">Ações</th></tr></thead>
             <tbody id="tcli"></tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- RODAPÉ -->
     <footer class="border-top border-secondary mt-5 pt-3 pb-2 small text-body-secondary d-flex flex-column flex-md-row justify-content-between gap-2">
       <span><strong class="text-body">Kbona</strong> · Uma loja. Muitos bugs.</span>
     </footer>
   </main>
 
-  <!-- MODAL DE CLIENTE; pattern valida CPF e telefone -->
   <div class="modal fade" id="mCli" tabindex="-1" aria-labelledby="mCliT" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <form class="modal-content bg-body-tertiary" id="fCli" novalidate>
         <div class="modal-header border-secondary"><h2 class="modal-title h5" id="mCliT">Cliente</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button></div>
         <div class="modal-body vstack gap-3">
-          <!-- Id oculto do cliente (usado ao editar) -->
           <input type="hidden" name="cid">
           <div><label class="form-label" for="cn">Nome completo</label><input id="cn" name="nome" class="form-control" required minlength="3"><div class="invalid-feedback">Informe o nome completo.</div></div>
           <div><label class="form-label" for="cpf">CPF</label><input id="cpf" name="cpf" class="form-control" required pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" placeholder="000.000.000-00"><div class="invalid-feedback" id="cpfmsg"></div></div>
@@ -113,7 +94,6 @@
     </div>
   </div>
 
-  <!-- MODAL DE EXCLUSÃO: nome do item em #delNome, botão confirmar #delOk -->
   <div class="modal fade" id="mDel" tabindex="-1" aria-labelledby="delTitle" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered"><div class="modal-content bg-body-tertiary border-secondary">
       <div class="modal-body"><h2 class="h6" id="delTitle">Tem certeza, chefe?</h2><p class="mb-0">Excluir <strong id="delNome"></strong>? Não tem mais volta.</p></div>
@@ -121,12 +101,9 @@
     </div></div>
   </div>
 
-  <!-- Área das notificações (toasts), canto inferior direito -->
   <div id="toasts" class="toast-container position-fixed bottom-0 end-0 p-3" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- Bootstrap JS (modais, menu lateral, toasts); vem antes do app.js -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Nosso JS, o mesmo em todas as páginas: cada id pode não existir na página atual -->
   <script src="app.js"></script>
 </body>
 </html>
